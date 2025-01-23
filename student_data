@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+class student {
+    public :
+        int student_id;
+        string student_name;
+        string student_course;
+        
+        void print()
+        {
+            cout<<"Student ID is "<<student_id<<endl<<"Student name is "<<student_name<<endl<<"Student course is "<<student_course<<endl; 
+        }
+    };
+    
+    void search(student std[],int num,int n)
+    {
+        
+        for (int i=0;i<n;i++)
+        {
+           if (std[i].student_id==num)
+           {
+              std[i].print(); 
+           }
+        }
+    }
+        
+int main()
+{
+      int n,id;
+      cout<<"Enter students numbers : ";
+      cin>>n;
+      
+      student std[n];
+      
+         for (int i=0;i<n;i++)
+         {
+             cout<<"Enter "<<i+1<<" students IDs : "<<endl;
+            cin>>std[i].student_id; 
+             cout<<"Enter "<<i+1<<" students names : "<<endl;
+            cin>>std[i].student_name;
+              cout<<"Enter "<<i+1<<" students course : "<<endl;
+            cin>>std[i].student_course;
+         }
+
+         cout<<"For searching you have to enter student ID :"<<endl;
+         cin>>id;
+         
+         search(std,id,n);
+         
+    return 0;
+}
