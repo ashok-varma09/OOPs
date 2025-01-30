@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include<string>
 using namespace std;
@@ -20,6 +21,7 @@ public :
 		this->comp_import_raw_diamonds=comp_import_raw_diamonds;
 		this->comp_export_diamonds=comp_export_diamonds;
 		this->comp_ceo=comp_ceo;
+		print();
 	}
 
 	void print()
@@ -73,7 +75,7 @@ int main()
 
 		diamond company(a,b,c,d,e,f,g);
 
-		company.print();
+		
 	}
 
 
