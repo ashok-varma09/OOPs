@@ -1,0 +1,85 @@
+
+
+#include <iostream>
+using namespace std;
+class diamond {
+public :
+	int comp_id;
+	string comp_name;
+	int comp_staff_quantity;
+	int comp_revenue;
+	int comp_import_raw_diamonds;
+	int comp_export_diamonds;
+	string comp_ceo;
+
+	diamond(int comp_id,string comp_name,int comp_staff_quantity,int comp_revenue,int comp_import_raw_diamonds,int comp_export_diamonds,string comp_ceo)
+	{
+		this->comp_id=comp_id;
+		this->comp_name=comp_name;
+		this->comp_staff_quantity=comp_staff_quantity;
+		this->comp_revenue=comp_revenue;
+		this->comp_import_raw_diamonds=comp_import_raw_diamonds;
+		this->comp_export_diamonds=comp_export_diamonds;
+		this->comp_ceo=comp_ceo;
+	}
+
+	void print()
+	{
+		cout<<endl<<"Company ID : "<<comp_id<<endl<<"Company name : "<<comp_name<<endl<<"Company staff quantity : "<<comp_staff_quantity<<endl<<"Company revenue : "<<comp_revenue<<endl<<"No. of importing diamoonds : "<<comp_import_raw_diamonds<<endl<<"No. of exporting dimaonds : "<<comp_export_diamonds<<endl<<"Company CEO name : "<<comp_ceo;
+	}
+
+
+
+};
+int main()
+{
+
+	int n;
+
+	cout<<"How many Diamond companies information do you want ?";
+	cin>>n;
+
+
+	int a,c,d,e,f;
+	string b,g;
+
+	for (int i=0; i<n; i++)
+	{
+
+		cout<<endl<<"Enter the company ID : ";
+		cin>>a;
+
+		cout<<"Enter the company Name : ";
+		cin>>b;
+
+		cout<<"Enter the company staff quantity : ";
+		cin>>c;
+
+		cout<<"Enter the company Revenue : ";
+		cin>>d;
+
+		cout<<"Enter the company import raw diamonds (no. of raw diamonds imported per year) : ";
+		cin>>e;
+
+		cout<<"Enter the company export raw diamonds (no. of raw diamonds Exported per year) : : ";
+		cin>>f;
+
+		cout<<"Enter the company CEO name : ";
+		cin>>g;
+		cout<<endl;
+
+
+		diamond company(a,b,c,d,e,f,g);
+
+		company.print();
+	}
+
+
+
+
+
+
+
+
+	return 0;
+}
