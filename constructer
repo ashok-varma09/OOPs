@@ -1,6 +1,5 @@
-
-
 #include <iostream>
+#include<string>
 using namespace std;
 class diamond {
 public :
@@ -36,8 +35,9 @@ int main()
 
 	int n;
 
-	cout<<"How many Diamond companies information do you want ?";
+	cout<<"How many Diamond companies information do you want ?"<<endl;
 	cin>>n;
+
 
 
 	int a,c,d,e,f;
@@ -50,7 +50,8 @@ int main()
 		cin>>a;
 
 		cout<<"Enter the company Name : ";
-		cin>>b;
+		cin.ignore();
+		getline(cin,b);
 
 		cout<<"Enter the company staff quantity : ";
 		cin>>c;
@@ -65,7 +66,8 @@ int main()
 		cin>>f;
 
 		cout<<"Enter the company CEO name : ";
-		cin>>g;
+		cin.ignore();
+		getline(cin,g);
 		cout<<endl;
 
 
