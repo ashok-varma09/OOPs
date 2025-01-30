@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+class student {
+private :
+	string name ;
+	int id;
+	float GPA;
+
+public :
+
+
+	student (string name,int id,float GPA)
+	{
+		this-> name=name;
+		this-> id=id;
+		this-> GPA=GPA;
+
+	}
+	
+    void set_id(int a)
+	{
+	    id=a;
+	    
+	}
+	
+    void set_name(string a)
+    {
+        name=a;  
+    }
+    
+    void set_GDA(float a)
+    {
+        GPA=a;
+    }
+	void print()
+	{
+		cout<<endl<<"Name is : "<<name<<endl<<"ID : "<<id<<endl<<"GPA : "<<GPA<<endl;
+	}
+
+};
+int main()
+{
+	student a("Ashok",34,56.98);
+	student b(a);
+	a.set_id(4);
+	a.set_name("Jayraj");
+	a.set_GDA(6.9);
+	a.print();
+	b.print();
+
+
+	return 0;
+}
