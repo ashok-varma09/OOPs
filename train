@@ -1,0 +1,107 @@
+#include <iostream>
+using namespace std;
+
+class Train {
+	int trainNumber;
+	string trainName[50];
+	string source[50];
+	string destination[50];
+	string trainTime[10];
+
+
+public :
+	static int count;
+
+	void inputtrandetail()
+	{	cout<<count<<endl;
+		cout<<"Enter train number : "<<endl;
+		cin>>trainNumber;
+
+		cout<<"Enter train name : "<<endl;
+		cin>>trainName[Train::count];
+
+		cout<<"Source : "<<endl;
+		cin>>source[Train::count];
+
+		cout<<"Destination : " <<endl;
+		cin>>destination[Train::count];
+
+		cout<<"Train time : "<<endl;
+		cin>>trainName[Train::count];
+
+		cout<<endl;
+		count++;
+
+	}
+
+
+	void displayTrainDetails()
+	{
+	    cout<<"Count : "<<count<<endl;
+		for (int i=0; i<1; i++) {
+			cout<<endl<<"Train "<<i+1<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName[i]<<endl<<"Source : "<<source[i]<<endl<<"Destination : "<<destination[i]<<endl<<"Train time : "<<trainTime[i]<<endl<<endl;
+		}
+	}
+
+	~Train()
+	{
+		cout<<endl<<"Distructor called :: ";
+	}
+
+
+};
+
+int Train::count=0;
+
+
+class RailwaySystem {
+
+	Train trains[100];
+	int totalTrains ;
+
+public :
+
+	void add_train()
+	{
+		trains[Train :: count].inputtrandetail();
+	}
+
+	void displayAllTrains()
+	{
+		for (int i=0; i<Train::count; i++)
+		{
+            trains[i].displayTrainDetails();
+		}
+	}
+};
+
+int main()
+{
+
+	Train a;
+	RailwaySystem c;
+	int choice ;
+	do {
+	cout<<"Press 1 for Add New Train Record"<<endl<<"Press 2 for Display All Train Records"<<endl<<"Press 3 for Search Train by Number"<<endl<<"Press 4 for exit"<<endl;
+	cin>>choice;
+
+	switch(choice)
+	{
+	case 1 :
+		for (int i=0; i<3; i++)
+		{
+			c.add_train();
+		}
+		break;
+	case 2:
+		c.displayAllTrains();
+		break;
+		case 0:
+		cout<<"exit";
+	}
+	}while(choice!=0);
+
+
+
+	return 0;
+}
