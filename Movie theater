@@ -1,0 +1,127 @@
+#include<iostream>
+#include<string>
+using namespace std;
+class movie {
+	int movie_id;
+	string movie_name;
+	string visibility;
+	int avl_seats;
+
+public  :
+	static int count;
+
+	void set_data()
+	{
+		cout<<endl;
+
+		cout<<"Enter movie ID : ";
+		cin>>movie_id;
+
+		cout<<"Enter movie name : ";
+		cin>>movie_name;
+
+		cout<<"Visibility of the movie : ";
+		cin>>visibility;
+
+		cout<<"Available seats for this movie : ";
+		cin>>avl_seats;
+		cout<<endl;
+		count++;
+	}
+
+	void display_data()
+	{
+		cout<<endl<<endl<<"Your movie details "<<"-------------------"<<endl<<"Movie ID : "<<movie_id<<endl<<"Movie name : "<<movie_name<<endl<<"Visibility : "<<visibility<<endl<<"Available seats for this movie are : "<<avl_seats<<endl<<endl;
+
+	}
+	string getmoviename()
+	{
+		return movie_name;
+	}
+};
+int movie::count=0;
+
+
+class movietheeater {
+	movie Movies[2];
+	int total=0;
+
+public :
+
+	void booktickets()
+{	if(total<50) {
+			Movies[total].set_data();
+			total++;
+		}
+		else
+		{
+			cout<<"Sorry theater is fully booked";
+		}
+	}
+
+	void viewing_all_movie()
+	{
+		for (int i=0; i<total; i++)
+		{
+			Movies[i].display_data();
+		}
+	}
+
+	void find(string mn)
+	{
+		for (int i=0; i<total; i++)
+		{
+			if (Movies[i].getmoviename()==mn)
+			{
+				Movies[i].display_data();
+			}
+		}
+	}
+
+};
+
+
+int main()
+{
+	movietheeater a;
+
+	int choice,n ;
+	do {
+		cout<<endl<<"Press 1 for book tickets\nPress 2 for viewing all movies\nPress 3 for searching movie by the id\nPress 0 to exit\n";
+		cin>>choice;
+
+		switch(choice) {
+		case 1:
+			cout << "How many movie tickets do you want to book : " << endl;
+			cin >> n;
+			for (int i = 0; i < n; i++) {
+				a.booktickets();
+			}
+			break;
+
+		case 2:
+			a.viewing_all_movie();
+			break;
+
+		case 3: {
+			string mn;
+			cout << "Enter the movie name for details : " << endl;
+			cin >> mn;
+			a.find(mn);
+			break;
+		}
+
+		case 0:
+			cout << "You have exited the window! Thank you..." << endl;
+			break;
+
+		default:
+			cout << "Invalid choice, please try again." << endl;
+		}
+	} while(choice != 0);
+	return 0;
+}
+
+
+
+                                                                                
