@@ -13,21 +13,25 @@ public :
 	static int count;
 
 	void inputtrandetail()
-	{	cout<<count<<endl;
+	{
+
 		cout<<"Enter train number : "<<endl;
 		cin>>trainNumber;
 
+
 		cout<<"Enter train name : "<<endl;
-		cin>>trainName[Train::count];
+		cin>>trainName;
 
 		cout<<"Source : "<<endl;
-		cin>>source[Train::count];
+		cin>>source;
 
 		cout<<"Destination : " <<endl;
-		cin>>destination[Train::count];
+
+		cin>>destination;
 
 		cout<<"Train time : "<<endl;
-		cin>>trainName[Train::count];
+
+		cin>>trainTime;
 
 		cout<<endl;
 		count++;
@@ -37,11 +41,7 @@ public :
 
 	void displayTrainDetails(int i)
 	{
-	   
-
-	
-			cout<<endl<<"Train "<<i<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName<<endl<<"Source : "<<source<<endl<<"Destination : "<<destination<<endl<<"Train time : "<<trainTime<<endl<<endl;
-		
+		cout<<endl<<"Train "<<i<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName<<endl<<"Source : "<<source<<endl<<"Destination : "<<destination<<endl<<"Train time : "<<trainTime<<endl<<endl;
 	}
 
 	~Train()
@@ -49,7 +49,10 @@ public :
 		cout<<endl<<"Distructor called :: ";
 	}
 
-
+	int gettrainnum()
+	{
+		return trainNumber;
+	}
 };
 
 int Train::count=0;
@@ -69,27 +72,30 @@ public :
 
 	void displayAllTrains()
 	{
-		for (int i=0; i<Train::count;i++)
+		for (int i=0; i<Train::count; i++)
 		{
 			trains[i].displayTrainDetails(i+1);
 		}
 
 	}
-	
-         void searchTrainByNumber(int number)
-         {
-             for (int i=0;i<Train::count;i++)
-             {
-               if (trains.[i])
-               {
-                   
-               }
-               else 
-               {
-                   
-               }
-             }
-         }
+
+	void searchTrainByNumber(int number)
+	{
+		for (int i=0; i<Train::count; i++)
+		{
+
+			if (trains[i].gettrainnum()==number)
+			{
+				trains[i].displayTrainDetails(i+1);
+			}
+
+			else
+			{
+				cout<<number<<" is not found !!";
+			}
+
+		}
+	}
 };
 
 int main()
@@ -114,18 +120,20 @@ int main()
 
 			c.displayAllTrains();
 			break;
+
 		case 3 :
-		int num;
-		cout<<"Enter train NO: to search : ";
-		cin>>num;
-		
-		c.searchTrainByNumber(num);
-			
-			
-		case 0:
-			cout<<"exit";
+
+			int num;
+			cout<<"Enter train NO: to search : ";
+			cin>>num;
+
+			c.searchTrainByNumber(num);
+			break;
+
+		default:
+			cout<<"ERROR\tYou are exiting from windows !..";
 		}
-	} while(choice!=0);
+	} while(choice!= 0);
 
 
 
