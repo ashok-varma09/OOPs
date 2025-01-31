@@ -42,11 +42,12 @@ public :
 	void displayTrainDetails(int i)
 	{
 		cout<<endl<<"Train "<<i<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName<<endl<<"Source : "<<source<<endl<<"Destination : "<<destination<<endl<<"Train time : "<<trainTime<<endl<<endl;
+	
 	}
 
 	~Train()
 	{
-		cout<<endl<<"Distructor called :: ";
+		count--;
 	}
 
 	int gettrainnum()
@@ -88,12 +89,7 @@ public :
 			{
 				trains[i].displayTrainDetails(i+1);
 			}
-
-			else
-			{
-				cout<<number<<" is not found !!";
-			}
-
+		
 		}
 	}
 };
@@ -101,11 +97,11 @@ public :
 int main()
 {
 
-	Train a;
+
 	RailwaySystem c;
 	int choice ;
 	do {
-		cout<<"Press 1 for Add New Train Record"<<endl<<"Press 2 for Display All Train Records"<<endl<<"Press 3 for Search Train by Number"<<endl<<"Press 4 for exit"<<endl;
+		cout<<"Press 1 for Add New Train Record"<<endl<<"Press 2 for Display All Train Records"<<endl<<"Press 3 for Search Train by Number"<<endl<<"Press 0 for exit"<<endl;
 		cin>>choice;
 
 		switch(choice)
@@ -131,7 +127,10 @@ int main()
 			break;
 
 		default:
-			cout<<"ERROR\tYou are exiting from windows !..";
+			cout<<"Invalid choice"<<endl;
+
+		case 0:
+			cout<<"You are exiting from windows";
 		}
 	} while(choice!= 0);
 
