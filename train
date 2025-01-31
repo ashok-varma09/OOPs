@@ -3,10 +3,10 @@ using namespace std;
 
 class Train {
 	int trainNumber;
-	string trainName[50];
-	string source[50];
-	string destination[50];
-	string trainTime[10];
+	string trainName;
+	string source;
+	string destination;
+	string trainTime;
 
 
 public :
@@ -35,12 +35,13 @@ public :
 	}
 
 
-	void displayTrainDetails()
+	void displayTrainDetails(int i)
 	{
-	    cout<<"Count : "<<count<<endl;
-		for (int i=0; i<1; i++) {
-			cout<<endl<<"Train "<<i+1<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName[i]<<endl<<"Source : "<<source[i]<<endl<<"Destination : "<<destination[i]<<endl<<"Train time : "<<trainTime[i]<<endl<<endl;
-		}
+	   
+
+	
+			cout<<endl<<"Train "<<i<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName<<endl<<"Source : "<<source<<endl<<"Destination : "<<destination<<endl<<"Train time : "<<trainTime<<endl<<endl;
+		
 	}
 
 	~Train()
@@ -56,8 +57,8 @@ int Train::count=0;
 
 class RailwaySystem {
 
-	Train trains[100];
-	int totalTrains ;
+	Train trains[50];
+	int totalTrains;
 
 public :
 
@@ -68,11 +69,27 @@ public :
 
 	void displayAllTrains()
 	{
-		for (int i=0; i<Train::count; i++)
+		for (int i=0; i<Train::count;i++)
 		{
-            trains[i].displayTrainDetails();
+			trains[i].displayTrainDetails(i+1);
 		}
+
 	}
+	
+         void searchTrainByNumber(int number)
+         {
+             for (int i=0;i<Train::count;i++)
+             {
+               if (trains.[i])
+               {
+                   
+               }
+               else 
+               {
+                   
+               }
+             }
+         }
 };
 
 int main()
@@ -82,24 +99,33 @@ int main()
 	RailwaySystem c;
 	int choice ;
 	do {
-	cout<<"Press 1 for Add New Train Record"<<endl<<"Press 2 for Display All Train Records"<<endl<<"Press 3 for Search Train by Number"<<endl<<"Press 4 for exit"<<endl;
-	cin>>choice;
+		cout<<"Press 1 for Add New Train Record"<<endl<<"Press 2 for Display All Train Records"<<endl<<"Press 3 for Search Train by Number"<<endl<<"Press 4 for exit"<<endl;
+		cin>>choice;
 
-	switch(choice)
-	{
-	case 1 :
-		for (int i=0; i<3; i++)
+		switch(choice)
 		{
-			c.add_train();
-		}
-		break;
-	case 2:
-		c.displayAllTrains();
-		break;
+		case 1 :
+			for (int i=0; i<3; i++)
+			{
+				c.add_train();
+			}
+			break;
+		case 2:
+
+			c.displayAllTrains();
+			break;
+		case 3 :
+		int num;
+		cout<<"Enter train NO: to search : ";
+		cin>>num;
+		
+		c.searchTrainByNumber(num);
+			
+			
 		case 0:
-		cout<<"exit";
-	}
-	}while(choice!=0);
+			cout<<"exit";
+		}
+	} while(choice!=0);
 
 
 
