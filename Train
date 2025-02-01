@@ -1,4 +1,5 @@
 #include <iostream>
+#include<string>
 using namespace std;
 
 class Train {
@@ -20,7 +21,8 @@ public :
 
 
 		cout<<"Enter train name : "<<endl;
-		cin>>trainName;
+		cin.ignore();
+		getline(cin,trainName);
 
 		cout<<"Source : "<<endl;
 		cin>>source;
@@ -42,7 +44,7 @@ public :
 	void displayTrainDetails(int i)
 	{
 		cout<<endl<<"Train "<<i<<" details "<<endl<<"--------------"<<endl<<"Train number :"<<trainNumber<<endl<<"Train name : "<<trainName<<endl<<"Source : "<<source<<endl<<"Destination : "<<destination<<endl<<"Train time : "<<trainTime<<endl<<endl;
-	
+
 	}
 
 	~Train()
@@ -62,18 +64,19 @@ int Train::count=0;
 class RailwaySystem {
 
 	Train trains[50];
-	int totalTrains;
+	int totalTrains=0;
 
 public :
 
 	void add_train()
 	{
 		trains[Train :: count].inputtrandetail();
+		totalTrains++;
 	}
 
 	void displayAllTrains()
 	{
-		for (int i=0; i<Train::count; i++)
+		for (int i=0; i<totalTrains; i++)
 		{
 			trains[i].displayTrainDetails(i+1);
 		}
@@ -82,15 +85,17 @@ public :
 
 	void searchTrainByNumber(int number)
 	{
-		for (int i=0; i<Train::count; i++)
+		for (int i=0; i<totalTrains; i++)
 		{
 
 			if (trains[i].gettrainnum()==number)
 			{
 				trains[i].displayTrainDetails(i+1);
 			}
-		
 		}
+	
+			    cout<<"Train not fouond Try again!! ..";
+		
 	}
 };
 
