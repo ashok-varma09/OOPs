@@ -5,7 +5,7 @@ class movie {
 	int movie_id;
 	string movie_name;
 	string visibility;
-	int avl_seats;
+
 
 public  :
 	static int count;
@@ -23,15 +23,14 @@ public  :
 		cout<<"Visibility of the movie : ";
 		cin>>visibility;
 
-		cout<<"Available seats for this movie : ";
-		cin>>avl_seats;
+	
 		cout<<endl;
 		count++;
 	}
 
 	void display_data()
 	{
-		cout<<endl<<endl<<"Your movie details "<<"-------------------"<<endl<<"Movie ID : "<<movie_id<<endl<<"Movie name : "<<movie_name<<endl<<"Visibility : "<<visibility<<endl<<"Available seats for this movie are : "<<avl_seats<<endl<<endl;
+		cout<<endl<<endl<<"Your movie details "<<"-------------------"<<endl<<"Movie ID : "<<movie_id<<endl<<"Movie name : "<<movie_name<<endl<<"Visibility : "<<visibility<<endl<<endl;
 
 	}
 	string getmoviename()
@@ -58,6 +57,7 @@ public :
 		else
 		{
 			cout<<"Sorry theater is fully booked"<<endl;
+			cout<<"You can book only "<<total<<" movies tickets "<<endl;
 		}
 	}
 
@@ -114,7 +114,7 @@ int main()
 		}
 
 		case 0:
-			cout << "You have exited the window! Thank you..." << endl;
+			cout << "You have exited the window !!! Thank you..." << endl;
 			break;
 
 		default:
