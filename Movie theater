@@ -38,6 +38,8 @@ public  :
 	{
 		return movie_name;
 	}
+	
+
 };
 int movie::count=0;
 
@@ -49,13 +51,13 @@ class movietheeater {
 public :
 
 	void booktickets()
-{	if(total<50) {
+{	if(total<2) {
 			Movies[total].set_data();
 			total++;
 		}
 		else
 		{
-			cout<<"Sorry theater is fully booked";
+			cout<<"Sorry theater is fully booked"<<endl;
 		}
 	}
 
@@ -119,6 +121,7 @@ int main()
 			cout << "Invalid choice, please try again." << endl;
 		}
 	} while(choice != 0);
+	
 	return 0;
 }
 
