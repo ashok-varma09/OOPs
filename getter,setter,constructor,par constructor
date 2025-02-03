@@ -1,0 +1,207 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+// Book class definition
+class Book {
+private:
+    int bookID;
+    char title[100];
+    char author[50];
+    int yearPublished;
+    bool isAvailable;
+
+    static int bookCount;
+
+public:
+    // Default Constructor
+    Book() {
+        bookID = 0;
+        strcpy(title, "");
+        strcpy(author, "");
+        yearPublished = 0;
+        isAvailable = true;
+    }
+
+    // Parameterized Constructor
+    Book(int id, const char* t, const char* a, int year, bool available) {
+        bookID = id;
+        strcpy(title, t);
+        strcpy(author, a);
+        yearPublished = year;
+        isAvailable = available;
+        bookCount++;
+    }
+
+    // Destructor
+    ~Book() {
+        bookCount--;
+    }
+
+    // Getters and Setters
+    void setBookID(int id) {
+        bookID = id;
+    }
+
+    int getBookID() {
+        return bookID;
+    }
+
+    void setTitle(const char* t) {
+        strcpy(title, t);
+    }
+
+    const char* getTitle() {
+        return title;
+    }
+
+    void setAuthor(const char* a) {
+        strcpy(author, a);
+    }
+
+    const char* getAuthor() {
+        return author;
+    }
+
+    void setYearPublished(int year) {
+        yearPublished = year;
+    }
+
+    int getYearPublished() {
+        return yearPublished;
+    }
+
+    void setIsAvailable(bool available) {
+        isAvailable = available;
+    }
+
+    bool getIsAvailable() {
+        return isAvailable;
+    }
+
+    // Static function to get total number of books
+    static int getBookCount() {
+        return bookCount;
+    }
+
+    // Method to input book details
+    void inputBookDetails() {
+        cout << "Enter Book ID: ";
+        cin >> bookID;
+        cin.ignore();
+        cout << "Enter Book Title: ";
+        cin.getline(title, 100);
+        cout << "Enter Book Author: ";
+        cin.getline(author, 50);
+        cout << "Enter Year Published: ";
+        cin >> yearPublished;
+        cout << "Enter Availability (1 for available, 0 for not): ";
+        cin >> isAvailable;
+    }
+
+    // Method to display book details
+    void displayBookDetails() {
+        cout << "Book ID: " << bookID << endl;
+        cout << "Title: " << title << endl;
+        cout << "Author: " << author << endl;
+        cout << "Year Published: " << yearPublished << endl;
+        cout << "Availability: " << (isAvailable ? "Available" : "Not Available") << endl;
+    }
+};
+
+// Initialize static member variable
+int Book::bookCount = 0;
+
+// LibrarySystem class definition
+class LibrarySystem {
+private:
+    Book books[100];
+    int totalBooks;
+
+public:
+    // Constructor
+    LibrarySystem() {
+        totalBooks = 0;
+    }
+
+    // Method to add a new book
+    void addBook() {
+        if (totalBooks < 100) {
+            books[totalBooks].inputBookDetails();
+            totalBooks++;
+        } else {
+            cout << "Library is full! Cannot add more books." << endl;
+        }
+    }
+
+    // Method to display all books
+    void displayAllBooks() {
+        if (totalBooks == 0) {
+            cout << "No books available in the library." << endl;
+        } else {
+            for (int i = 0; i < totalBooks; i++) {
+                cout << "Book " << (i + 1) << " details:" << endl;
+                books[i].displayBookDetails();
+                cout << endl;
+            }
+        }
+    }
+
+    // Method to search book by ID
+    void searchBookByID(int bookID) {
+        bool found = false;
+        for (int i = 0; i < totalBooks; i++) {
+            if (books[i].getBookID() == bookID) {
+                cout << "Book found:" << endl;
+                books[i].displayBookDetails();
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            cout << "Book with ID " << bookID << " not found!" << endl;
+        }
+    }
+
+    // Method to display the total number of books
+    void displayTotalBooks() {
+        cout << "Total Books: " << Book::getBookCount() << endl;
+    }
+};
+
+// Main function to run the system
+int main() {
+    LibrarySystem system;
+    int choice, bookID;
+
+    do {
+        cout << "--- Library System Menu ---" << endl;
+        cout << "1. Add New Book Record" << endl;
+        cout << "2. Display All Books" << endl;
+        cout << "3. Search Book by ID" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                system.addBook();
+                break;
+            case 2:
+                system.displayAllBooks();
+                break;
+            case 3:
+                cout << "Enter Book ID to search: ";
+                cin >> bookID;
+                system.searchBookByID(bookID);
+                break;
+            case 4:
+                cout << "Exiting the system. Goodbye!" << endl;
+                break;
+            default:
+                cout << "Invalid choice! Please try again." << endl;
+        }
+    } while (choice != 4);
+
+    return 0;
+} 
