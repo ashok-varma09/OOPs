@@ -1,0 +1,193 @@
+#include <iostream>
+using namespace std;
+class account
+{
+	int accountNumber;
+	float balance;
+	double interestRate;
+
+public:
+	void ac_no(int num)
+	{
+		accountNumber = num;
+	}
+
+	int get_ac()
+	{
+		return accountNumber;
+	}
+
+
+	void deposit(float d_amount)
+	{
+		if (d_amount >= 0)
+		{
+			balance += d_amount;
+		}
+		else
+		{
+			cout << "You can't  deposit less than 0" << endl;
+		}
+	}
+
+
+
+	void withdrow(float withdrow)
+	{
+		if (withdrow <= balance)
+		{
+			balance = balance - withdrow;
+		}
+		else
+		{
+			cout << "not enough money !!!" << endl;
+		}
+	}
+
+	double interest(double r)
+	{
+		return balance * (r / 100.00);
+	}
+
+	void print(double r)
+	{
+		cout << "Acc no : " << accountNumber << endl;
+		cout << "Interest is " << r << "%";
+		cout << "your current balance is : " << balance << endl;
+	}
+
+	void print_with_interest(double r)
+	{   
+		cout << "ACC NO : " << accountNumber << endl;
+		cout << "Interest is " << r << "%"<<endl;
+		cout << "your New balance is : " << balance +interest(r)<< endl<<endl;
+	}
+};
+
+class bank
+{
+	account accounts[10];
+	int totalAccounts = 0;
+
+public:
+
+	void addAccount(int ac, float balance, double rate)
+	{
+		accounts[totalAccounts].ac_no(ac);
+		accounts[totalAccounts].deposit(balance);
+		accounts[totalAccounts].interest(rate);
+		totalAccounts++;
+	}
+
+	void display(double r)
+	{
+		for (int i = 0; i < totalAccounts; i++)
+		{
+			accounts[i].print(r);
+		}
+	}
+
+	int depo(int ac, float deposit)
+	{
+		for (int i = 0; i < totalAccounts; i++)
+		{
+			if (accounts[i].get_ac() == ac)
+			{
+				accounts[i].deposit(deposit);
+				return 0;
+			}
+		}
+		cout << "ACCOUNT NOT FOUND !!" << endl;
+	}
+	int w(int ac, float withdrow)
+	{
+		for (int i = 0; i < totalAccounts; i++)
+		{
+			if (accounts[i].get_ac() == ac)
+			{
+				accounts[i].withdrow(withdrow);
+				return 0;
+			}
+		}
+		cout << "ACCOUNT NOT FOUND !!" << endl;
+	}
+	void display_interest(double rate)
+	{
+		int interest;
+
+		cout<<totalAccounts;
+		for (int i=0; i<totalAccounts; i++)
+		{
+			cout<<"Enter your interest : ";
+			cin>>interest;
+			accounts[i].print_with_interest(interest);
+		}
+	}
+};
+int main()
+{
+	bank a;
+	account b;
+
+	int choice, ac, num;
+	float deposit, withdrown, balance;
+	double interest;
+	int temp[num];
+	do
+	{
+		cout << "Press 1 for Add account\nPress 2 for Deposit\nPress 3 for withdrow\nPress 4 for display all accounts\nPress 5 to show balance with interest\nPress 0 for exit\n";
+		cin >> choice;
+
+		switch (choice)
+		{
+
+		case 1:
+			cout << "How many accounts do you want to add ? : ";
+			cin >> num;
+			for (int i = 0; i <num; i++)
+			{
+				cout << "Enter account number :  ";
+				cin >> ac;
+				cout << "Enter the balance : ";
+				cin >> balance;
+				cout << "Interest rate : ";
+				cin >> interest;
+				temp[i]=interest;
+				a.addAccount(ac, balance, interest);
+			}
+			break;
+
+		case 2:
+			cout << "Enter your account number : ";
+			cin >> ac;
+
+			cout << "Enter the value of deposit : ";
+			cin >> deposit;
+			a.depo(ac, deposit);
+			break;
+
+		case 3:
+			cout << "Enter your account number : ";
+			cin >> ac;
+
+			cout << "Enter the withdrow amount : ";
+			cin >> withdrown;
+
+			a.w(ac, withdrown);
+			break;
+		case 4:
+			a.display(interest);
+			break;
+		case 5 :
+			for (int i=0; i<num; i++)
+			{
+				a.display_interest(temp[i]);
+			}
+			break;
+		case 0:
+			cout << "Invalid choice";
+		}
+
+	} while (choice != 0);
+	return 0;
+}
