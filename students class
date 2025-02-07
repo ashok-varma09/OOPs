@@ -1,0 +1,219 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+class student
+{
+	int studentID;
+	string name;
+	int marks[5];
+	double avg;
+
+public:
+	void set_id(int id)
+	{
+		studentID=id;
+	}
+
+	void set_name(string n)
+	{
+		name = n;
+	}
+	double get_avg()
+	{
+		return avg;
+	}
+	string get_name()
+	{
+		return name;
+	}
+
+	void inputdetails()
+	{
+		string sub[5] = {"Math", "English", "Science", "S.S", "Hindi"};
+		
+		cout << "Enter 5 subjects marks : " << endl;
+		for (int i = 0; i < 5; i++)
+		{
+			cout << "Enter " << sub[i] << " Marks ";
+			cin >> marks[i];
+			cout<<"marks "<<marks[i]<<endl;
+		}
+	}
+
+	double calculate()
+	{
+		double sum;
+		for (int i = 0; i < 5; i++)
+		{
+			sum += marks[i];
+		}
+		avg = sum / 5;
+		cout << "Percentage is : " << avg << " %" << endl;
+		return avg;
+	}
+
+	
+	void get_grade()
+	{
+
+		if (avg <= 33)
+		{
+			cout << name << " is fail ...!!!" << endl;
+		}
+		else
+		{
+			if (avg < 50)
+			{
+				cout << name << "got Grade D...";
+			}
+			else
+			{
+				if (avg < 70)
+				{
+					cout << name << "got grade  C";
+				}
+				else
+				{
+					if (avg > 80)
+					{
+						cout << name << "got grade  B";
+					}
+					else
+					{
+						if (avg > 90)
+						{
+							cout << name << "got grade A";
+						}
+						else
+						{
+							cout << name << "got grade A++";
+						}
+					}
+				}
+			}
+		}
+	}
+
+	void display()
+	{
+		cout << endl
+			 << "Student ID : " << studentID << endl;
+		cout << "Name : " << name << endl;
+	}
+	void display_top()
+	{
+		cout<<avg;
+	}
+};
+
+class school
+{
+	student students[100];
+	int total = 0;
+
+public:
+	void add(int id, string name)
+	{
+		students[total].set_id(id);
+		students[total].set_name(name);
+		total++;
+	}
+
+	void displayallstudent()
+	{
+		for (int i = 0; i < total; i++)
+		{
+			students[i].display();
+		}
+	}
+
+	void check_result(string n)
+	{
+		
+		for (int i = 0; i < total; i++)
+		{
+			
+			
+				students[i].inputdetails();
+				students[i].calculate();
+				students[i].get_grade();
+				
+			
+			
+		}
+		
+	}
+
+	void topper()
+	{
+		double a=0;
+		string name;
+
+		for (int i=0;i<total;i++)
+		{
+			if (students[i].calculate()>a)
+			{
+				a=students[i].calculate();
+				name =students[i].get_name();
+			}
+		}
+		if(a==0)
+		{
+			cout<<"You have to put marks first ::";
+		}
+		else 
+		{
+			cout<<"Hoghest average is "<<setprecision(2)<<a;
+			cout<<"name"<<name;
+		}
+		
+	}
+};
+int main()
+{
+	school a;
+
+	string name;
+	int choice, id, num;
+	do
+	{
+		cout << "\n\nPress 1 for add Students \nPress 2 for display all students\nPress 3 for check result\nPress 4 for display toppers of the school \nPress 0 to exit\n";
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			cout << "How many students do you want to add ?";
+			cin >> num;
+			cout << endl;
+
+			for (int i = 0; i < num; i++)
+			{
+				cout << "Enter student id : ";
+				cin >> id;
+
+				cout << "Enter student name : ";
+				cin >> name;
+				cout << endl;
+				a.add(id, name);
+			}
+			break;
+		case 2:
+			a.displayallstudent();
+			break;
+
+		case 3:
+			
+			a.check_result(name);
+			break;
+
+		case 4 :
+			a.topper();
+			break;
+		default:
+			cout << "Invalid choice ..try again!!" << endl;
+		}
+	} while (choice != 0);
+	return 0;
+}
