@@ -1,0 +1,117 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+class calculator
+{
+	double a, b;
+
+public:
+	void set(double f, double s)
+	{
+		a = f;
+		b = s;
+	}
+	double add(double a, double b)
+	{
+		return a + b;
+	}
+
+	double sub(double a, double b)
+	{
+		return a - b;
+	}
+
+	double multiply(double a, double b)
+	{
+		return a * b;
+	}
+
+	void divide(double a, double b)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			if (b == 0)
+			{
+				cout << "Can't divide by the number 0" << endl;
+			}
+			else
+			{
+				cout << "Division is " <<setprecision(2)<< a / b<<endl;
+			}
+		}
+	}
+
+	void display_addition()
+	{
+		cout << "Addition is " << "(" << a << "+" << b << ")" << "=" << add(a, b) << endl
+			 << endl;
+	}
+
+	void display_Substraction()
+	{
+		cout << "Substraction is " << "(" << a << "-" << b << ")" << "=" << sub(a, b) << endl
+			 << endl;
+	}
+
+	void display_multipliaction()
+	{
+		cout << "Multipliaction is " << "(" << a << "*" << b << ")" << "=" << multiply(a, b) << endl
+			 << endl;
+	}
+
+	void display_divide()
+	{
+		divide(a, b);
+	}
+};
+int main()
+{
+	calculator solution;
+	double a, b;
+	int choice;
+
+	do
+	{
+		cout << "Press 1 for addition \nPress 2 for substraction \nPress 3 for multiplication\nPress 4 for divide\n";
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			cout << "Enter any two numbers to addition : ";
+			cout << endl;
+			cin >> a >> b;
+			solution.set(a, b);
+			solution.display_addition();
+			break;
+
+		case 2:
+			cout << "Enter any two numbers to Substraction : ";
+			cout << endl;
+			cin >> a >> b;
+			solution.set(a, b);
+			solution.display_Substraction();
+			break;
+
+		case 3:
+			cout << "Enter any two numbers to multipliaction : ";
+			cout << endl;
+			cin >> a >> b;
+			solution.set(a, b);
+			solution.display_multipliaction();
+			break;
+
+		case 4:
+			cout << "Enter any two numbers to Division : ";
+			cout << endl;
+			cin >> a >> b;
+			solution.set(a, b);
+			solution.display_divide();
+			break;
+
+		default:
+			cout << "Invalid choice try again !!..." << endl;
+		}
+	} while (choice != 0);
+	return 0;
+}
