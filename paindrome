@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+class palindrome
+{
+    char name[100];
+
+public:
+    void set_name(char a[])
+    {
+        for (int i = 0; i < strlen(a); i++)
+        {
+            name[i] = a[i];
+        }
+    }
+
+    void ispalindrome(char a[])
+    {
+
+        int count = 0;
+
+        for (int i = 0, j = strlen(a)-1; i < strlen(a); i++, j--)
+        {
+
+            if (a[i] == a[j])
+            {
+                count++;
+            }
+            else
+            {
+                count=0;
+            }
+        }
+
+        if (strlen(a) == count)
+        {
+            cout << a << " is palindrome";
+        }
+        else
+        {
+            cout << a << " is not palindrome";
+        }
+    }
+};
+int main()
+{
+
+    palindrome check;
+    char name[100];
+
+    cout<<"Enter any string : ";
+    cin>>name ;
+
+    check.set_name(name);
+    check.ispalindrome(name);
+    return 0;
+}
