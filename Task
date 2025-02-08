@@ -1,0 +1,129 @@
+#include <iostream>
+using namespace std;
+class task
+{
+    int taskID;
+    string taskName;
+    string dueDate;
+
+public:
+    int get_id()
+    {
+        return taskID;
+    }
+    void set_data(int Id, string name, string date)
+    {
+        taskID = Id;
+        taskName = name;
+        dueDate = date;
+    }
+
+    void input()
+    {
+        cout << endl;
+        cout << "Enter taskId : ";
+        cin >> taskID;
+
+        cout << "Enter task name : ";
+        cin >> taskName;
+
+        cout << "Enter Due date : ";
+        cin >> dueDate;
+        cout << endl;
+    }
+
+    void display()
+    {
+        cout << endl;
+        cout << "Task ID : " << taskID << endl;
+        cout << "Task name : " << taskName << endl;
+        cout << "Due date is : " << dueDate << endl;
+    }
+    
+    void delete_task()
+    {
+        
+    }
+           
+};
+
+class manage_task
+{
+    int total = 0;
+    task tasks[100];
+
+public:
+    void add_task()
+    {
+        tasks[total].input();
+        total++;
+    }
+
+    void display_all()
+    {
+        for (int i = 0; i < total; i++)
+        {
+            tasks[i].display();
+        }
+    }
+
+    void deleteTaskByID(int taskID)
+    {
+        int temp=0;
+        for (int i = 0; i < total; i++)
+        {
+            if (tasks[i].get_id() == taskID)
+            {
+                tasks[i].delete_task();
+                temp=1;
+                break;
+            }
+        }
+        if(temp==0)
+        {
+            cout << "Task Id not found !!..try agin." << endl;
+        }
+    }
+};
+
+int main()
+{
+    manage_task a;
+
+    int choice, num;
+
+    do
+    {
+        cout << "Press 1 for add tasks \nPress 2 for display all tasks \nPress 3 for delete tasks \nPress 0 to exit " << endl;
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cout << "How many tasks do you want to add ? ";
+            cin >> num;
+            for (int i=0;i<num;i++)
+            {
+                a.add_task();
+            }
+            break;
+        
+            case 2 :
+            a.display_all();
+            break;
+
+            case 3 :
+            cout<<"Enter taskId : ";
+            cin>>num;
+            a.deleteTaskByID(num);
+            break;
+
+            case 0:
+            cout<<"You're exiting from windows!!..thank you."<<endl;
+        default:
+            cout<<"Invalid choice ! try again..."<<endl;
+        }
+    } while (choice != 0);
+    return 0;
+}
+     
