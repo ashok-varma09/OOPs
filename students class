@@ -7,19 +7,19 @@ class student
 	int studentID;
 	string name;
 	int marks[5];
-	double avg;
+	float avg;
 
 public:
-	void set_id(int id)
+	int set_id(int id)
 	{
-		studentID=id;
+		studentID = id;
 	}
 
-	void set_name(string n)
+	float set_name(string n)
 	{
 		name = n;
 	}
-	double get_avg()
+	float get_avg()
 	{
 		return avg;
 	}
@@ -31,31 +31,30 @@ public:
 	void inputdetails()
 	{
 		string sub[5] = {"Math", "English", "Science", "S.S", "Hindi"};
-		
-		cout << "Enter 5 subjects marks : " << endl;
+
+		cout << "Enter " << name << "'s marks : " << endl;
 		for (int i = 0; i < 5; i++)
 		{
-			cout << "Enter " << sub[i] << " Marks ";
+			cout << "Enter " << sub[i] << " Marks : ";
 			cin >> marks[i];
-			cout<<"marks "<<marks[i]<<endl;
 		}
 	}
 
-	double calculate()
+	void calculate()
 	{
-		double sum;
+		int sum = 0;
 		for (int i = 0; i < 5; i++)
 		{
 			sum += marks[i];
 		}
 		avg = sum / 5;
-		cout << "Percentage is : " << avg << " %" << endl;
-		return avg;
+		cout <<endl<< "Percentage is : " << setprecision(2) << avg << " %" << endl
+			 << endl;
 	}
 
-	
 	void get_grade()
 	{
+		int sum;
 
 		if (avg <= 33)
 		{
@@ -65,29 +64,29 @@ public:
 		{
 			if (avg < 50)
 			{
-				cout << name << "got Grade D...";
+				cout << name << " Got Grade D..." << endl;
 			}
 			else
 			{
 				if (avg < 70)
 				{
-					cout << name << "got grade  C";
+					cout << name << " Got grade  C" << endl;
 				}
 				else
 				{
 					if (avg > 80)
 					{
-						cout << name << "got grade  B";
+						cout << name << " Got grade  B" << endl;
 					}
 					else
 					{
 						if (avg > 90)
 						{
-							cout << name << "got grade A";
+							cout << name << " Got grade A" << endl;
 						}
 						else
 						{
-							cout << name << "got grade A++";
+							cout << name << " Got grade A++" << endl;
 						}
 					}
 				}
@@ -97,13 +96,9 @@ public:
 
 	void display()
 	{
-		cout << endl
-			 << "Student ID : " << studentID << endl;
+		cout << endl;
+		cout<< "Student ID : " << studentID << endl;
 		cout << "Name : " << name << endl;
-	}
-	void display_top()
-	{
-		cout<<avg;
 	}
 };
 
@@ -130,44 +125,39 @@ public:
 
 	void check_result(string n)
 	{
-		
+
 		for (int i = 0; i < total; i++)
 		{
-			
-			
-				students[i].inputdetails();
-				students[i].calculate();
-				students[i].get_grade();
-				
-			
-			
+			students[i].inputdetails();
+			students[i].calculate();
+			students[i].get_grade();
 		}
-		
 	}
 
 	void topper()
 	{
-		double a=0;
+		int a = 0;
 		string name;
 
-		for (int i=0;i<total;i++)
+		for (int i = 0; i < total; i++)
 		{
-			if (students[i].calculate()>a)
+			if (students[i].get_avg() > a)
 			{
-				a=students[i].calculate();
-				name =students[i].get_name();
+
+				a = students[i].get_avg();
+				name = students[i].get_name();
 			}
 		}
-		if(a==0)
+		if (a == 0)
 		{
-			cout<<"You have to put marks first ::";
+			cout << "You have to put marks first ::";
 		}
-		else 
+		else
 		{
-			cout<<"Hoghest average is "<<setprecision(2)<<a;
-			cout<<"name"<<name;
+			cout << "Topper is " << name<<endl;
+
+			cout << "Who got " << setprecision(2) << a<<" Percentage"<<endl;
 		}
-		
 	}
 };
 int main()
@@ -204,11 +194,11 @@ int main()
 			break;
 
 		case 3:
-			
+
 			a.check_result(name);
 			break;
 
-		case 4 :
+		case 4:
 			a.topper();
 			break;
 		default:
